@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create card table
+      author: Elnur Rehimov
+      changes:
+        - createTable:
+            tableName: card
+            columns:
+              - column:
+                  name: id
+                  type: number
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: number
+                  constraints:
+                    foreignKeyName: fk_user_id
+                    references: user(id)
+              - column:
+                  name: pan
+                  type: varchar(128)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: embossed_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: expiry_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+
+            remarks: Table to store information about card
